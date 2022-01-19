@@ -1,0 +1,6 @@
+dependencies:
+- name: factory
+  repository: https://raghav19.github.io/helm-charts/
+  version: 0.1.0
+digest: sha256:94f7adf418343db4b9be2ddfb9c7fa7b1f973a91ab1313f0d7a43e7eead47ccb
+generated: "2022-01-19T13:40:43.321232343+05:30"

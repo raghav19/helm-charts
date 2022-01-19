@@ -26,22 +26,22 @@ appVersion: "v4.1.0"
 
 dependencies:
   - name: factory
-    repository: file://../../lib/factory/ 
+    repository: https://raghav19.github.io/helm-charts/
     version: 0.1.0
   - name: cms
-    repository: file://../../services/cms/ 
+    repository: https://raghav19.github.io/helm-charts/
     version: 0.1.0
   - name: aas
-    repository: file://../../services/aas/ 
+    repository: https://raghav19.github.io/helm-charts/ 
     version: 0.1.0
   - name: aas-manager
-    repository: file://../../jobs/aas-manager/ 
+    repository: https://raghav19.github.io/helm-charts/
     version: 0.1.0
   - name: hvs
-    repository: file://../../services/hvs/ 
+    repository: https://raghav19.github.io/helm-charts/
     version: 0.1.0
   - name: ta
-    repository: file://../../services/ta/
+    repository: https://raghav19.github.io/helm-charts/
     version: 0.1.0
 
 maintainers:

@@ -1,9 +1,56 @@
 apiVersion: v1
 entries:
+  aas:
+  - apiVersion: v2
+    appVersion: v4.1.0
+    created: "2022-01-19T14:32:39.029928505+05:30"
+    dependencies:
+    - name: factory
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    description: A Helm chart for Installing ISecL-DC Authentication and Authorization
+      Service
+    digest: 6a381e9151d706161b7c2d2bcffc9cb6b06118d823b8aaec652764c92c610105
+    name: aas
+    type: application
+    urls:
+    - https://raghav19.github.io/helm-charts/aas-0.1.0.tgz
+    version: 0.1.0
+  aas-manager:
+  - apiVersion: v2
+    appVersion: v4.1.0
+    created: "2022-01-19T14:32:39.030468838+05:30"
+    dependencies:
+    - name: factory
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    description: A Helm chart for bootstrapping default users and roles and fetching
+      jwt token from Authentication & Authorization Service
+    digest: 10fa6b6d0e5d3b55a44969b672fedea407621f1d2e8e814b9637e843f4843781
+    name: aas-manager
+    type: application
+    urls:
+    - https://raghav19.github.io/helm-charts/aas-manager-0.1.0.tgz
+    version: 0.1.0
+  cms:
+  - apiVersion: v2
+    appVersion: v4.1.0
+    created: "2022-01-19T14:32:39.031290144+05:30"
+    dependencies:
+    - name: factory
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    description: A Helm chart for Installing ISecL-DC Certificate Management Service
+    digest: edb886e48dbac99c591eeab757fab060c37fd2ddbf3962ad53d59a560c4d1d00
+    name: cms
+    type: application
+    urls:
+    - https://raghav19.github.io/helm-charts/cms-0.1.0.tgz
+    version: 0.1.0
   factory:
   - apiVersion: v2
     appVersion: 4.1.0
-    created: "2022-01-19T12:27:22.780769779+05:30"
+    created: "2022-01-19T14:32:39.031610402+05:30"
     description: A Helm chart for Kubernetes
     digest: 3da901175be73d937fd3264ce787b98278fffbe93ac6d47d9043e2eb450a3d0e
     name: factory
@@ -11,4 +58,34 @@ entries:
     urls:
     - https://raghav19.github.io/helm-charts/factory-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-19T12:27:22.780365402+05:30"
+  hvs:
+  - apiVersion: v2
+    appVersion: v4.1.0
+    created: "2022-01-19T14:32:39.033019503+05:30"
+    dependencies:
+    - name: factory
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    description: A Helm chart for Installing ISecL-DC Host Verification Service
+    digest: e1dda08a5e364e9e2abd3461ef912b4b725fe96188bf2d8aa2d900cd77e5a0d0
+    name: hvs
+    type: application
+    urls:
+    - https://raghav19.github.io/helm-charts/hvs-0.1.0.tgz
+    version: 0.1.0
+  ta:
+  - apiVersion: v2
+    appVersion: v4.1.0
+    created: "2022-01-19T14:32:39.034143385+05:30"
+    dependencies:
+    - name: factory
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    description: A Helm chart for Installing ISecL-DC Trust Agent
+    digest: 514f671ed6379f082e3b192d00855c2d5dd578a2c0c5e5604887ea39b7ebff77
+    name: ta
+    type: application
+    urls:
+    - https://raghav19.github.io/helm-charts/ta-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-01-19T14:32:39.028975599+05:30"

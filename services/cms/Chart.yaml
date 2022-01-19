@@ -25,5 +25,5 @@ appVersion: "v4.1.0"
 
 dependencies:
   - name: factory
-    repository: file://../../lib/factory/ 
+    repository: "https://raghav19.github.io/helm-charts/"
     version: 0.1.0
