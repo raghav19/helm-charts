@@ -3,12 +3,12 @@ entries:
   factory:
   - apiVersion: v2
     appVersion: 4.1.0
-    created: "2022-01-19T12:23:53.336936214+05:30"
+    created: "2022-01-19T12:27:22.780769779+05:30"
     description: A Helm chart for Kubernetes
     digest: 3da901175be73d937fd3264ce787b98278fffbe93ac6d47d9043e2eb450a3d0e
     name: factory
     type: library
     urls:
-    - factory-0.1.0.tgz
+    - https://raghav19.github.io/helm-charts/factory-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-19T12:23:53.336436455+05:30"
+generated: "2022-01-19T12:27:22.780365402+05:30"
