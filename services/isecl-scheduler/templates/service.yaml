@@ -1,8 +1,0 @@
-{{- include "factory.headers" . }}
----
-{{- include "factory.serviceCommonSpec" . }}
-  type: NodePort
-  ports:
-    - port: {{ .Values.service.containerPort }}
-      targetPort: {{ .Values.service.containerPort }}
-      nodePort: {{ .Values.service.port }}
