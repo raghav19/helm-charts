@@ -1,0 +1,21 @@
+dependencies:
+- name: factory
+  repository: https://raghav19.github.io/helm-charts/
+  version: 0.1.0
+- name: cms
+  repository: https://raghav19.github.io/helm-charts/
+  version: 0.1.0
+- name: aas
+  repository: https://raghav19.github.io/helm-charts/
+  version: 0.1.0
+- name: aas-manager
+  repository: https://raghav19.github.io/helm-charts/
+  version: 0.1.0
+- name: hvs
+  repository: https://raghav19.github.io/helm-charts/
+  version: 0.1.0
+- name: ta
+  repository: https://raghav19.github.io/helm-charts/
+  version: 0.1.0
+digest: sha256:132e4a73fe03c40adf461a2e26c7acb1fe2c6199957ad013df54a4a3d8f91919
+generated: "2022-01-19T14:36:18.216219374+05:30"
