@@ -3,7 +3,7 @@ entries:
   Host-Attestation:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T19:41:30.731744117+05:30"
+    created: "2022-01-19T19:59:07.275761429+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -40,7 +40,7 @@ entries:
   aas:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T19:41:30.732996607+05:30"
+    created: "2022-01-19T19:59:07.276613566+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -53,25 +53,10 @@ entries:
     urls:
     - https://raghav19.github.io/helm-charts/aas-0.1.0.tgz
     version: 0.1.0
-  - apiVersion: v2
-    appVersion: v4.1.0
-    created: "2022-01-19T19:41:30.736050563+05:30"
-    dependencies:
-    - name: factory
-      repository: https://raghav19.github.io/helm-charts/
-      version: 0.1.0
-    description: A Helm chart for Installing ISecL-DC Authentication and Authorization
-      Service
-    digest: 989f040869135146bdf186c291d1320e293c6b164a4de283a1e9691f0cf1e088
-    name: aas
-    type: application
-    urls:
-    - https://raghav19.github.io/helm-charts/charts/aas-0.1.0.tgz
-    version: 0.1.0
   aas-manager:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T19:41:30.733527324+05:30"
+    created: "2022-01-19T19:59:07.277081811+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -87,7 +72,7 @@ entries:
   cms:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T19:41:30.734202747+05:30"
+    created: "2022-01-19T19:59:07.277666872+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -99,10 +84,21 @@ entries:
     urls:
     - https://raghav19.github.io/helm-charts/cms-0.1.0.tgz
     version: 0.1.0
+  factory:
+  - apiVersion: v2
+    appVersion: 4.1.0
+    created: "2022-01-19T19:59:07.277919448+05:30"
+    description: A Helm chart for Kubernetes
+    digest: 1085223c939d190a7b76ed73a305c264d16d8364f659beefc35d4ed91961f9b1
+    name: factory
+    type: library
+    urls:
+    - https://raghav19.github.io/helm-charts/factory-0.1.0.tgz
+    version: 0.1.0
   hvs:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T19:41:30.734941585+05:30"
+    created: "2022-01-19T19:59:07.27866289+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -114,24 +110,10 @@ entries:
     urls:
     - https://raghav19.github.io/helm-charts/hvs-0.1.0.tgz
     version: 0.1.0
-  - apiVersion: v2
-    appVersion: v4.1.0
-    created: "2022-01-19T19:41:30.736708569+05:30"
-    dependencies:
-    - name: factory
-      repository: https://raghav19.github.io/helm-charts/
-      version: 0.1.0
-    description: A Helm chart for Installing ISecL-DC Host Verification Service
-    digest: c265b75b3e4f1f0e05f2e5bbfe7af4eb94e4b3cd09c6e70531c2cf14640b809d
-    name: hvs
-    type: application
-    urls:
-    - https://raghav19.github.io/helm-charts/charts/hvs-0.1.0.tgz
-    version: 0.1.0
   ta:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T19:41:30.735383414+05:30"
+    created: "2022-01-19T19:59:07.279130948+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -143,18 +125,4 @@ entries:
     urls:
     - https://raghav19.github.io/helm-charts/ta-0.1.0.tgz
     version: 0.1.0
-  - apiVersion: v2
-    appVersion: v4.1.0
-    created: "2022-01-19T19:41:30.73769519+05:30"
-    dependencies:
-    - name: factory
-      repository: https://raghav19.github.io/helm-charts/
-      version: 0.1.0
-    description: A Helm chart for Installing ISecL-DC Trust Agent
-    digest: e5ef1696ce4a851ff3810561c5774071778ca6ccef9ba8f2627d1c822390a52d
-    name: ta
-    type: application
-    urls:
-    - https://raghav19.github.io/helm-charts/charts/ta-0.1.0.tgz
-    version: 0.1.0
-generated: "2022-01-19T19:41:30.726865359+05:30"
+generated: "2022-01-19T19:59:07.271033838+05:30"
