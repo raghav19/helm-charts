@@ -1,9 +1,46 @@
 apiVersion: v1
 entries:
+  Host-Attestation:
+  - apiVersion: v2
+    appVersion: v4.1.0
+    created: "2022-01-19T14:37:04.561276318+05:30"
+    dependencies:
+    - name: factory
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    - name: cms
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    - name: aas
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    - name: aas-manager
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    - name: hvs
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    - name: ta
+      repository: https://raghav19.github.io/helm-charts/
+      version: 0.1.0
+    description: A Helm chart for Deploying ISecL-DC Platform Attestation Use case
+    digest: 93bf8cd379f9bfee37136ef32ba5efc8d90621a33fd18935b8c000e1e94735e7
+    maintainers:
+    - email: johnny.jacob@intel.com
+      name: JJ
+    - email: praveenrajr@intel.com
+      name: PraveenRaj R
+    - email: raghavender.nagarajan@intel.com
+      name: rana19
+    name: Host-Attestation
+    type: application
+    urls:
+    - https://raghav19.github.io/helm-charts/Host-Attestation-0.1.0.tgz
+    version: 0.1.0
   aas:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T14:34:28.364666258+05:30"
+    created: "2022-01-19T14:37:04.562135445+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -19,7 +56,7 @@ entries:
   aas-manager:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T14:34:28.365139543+05:30"
+    created: "2022-01-19T14:37:04.562575387+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -35,7 +72,7 @@ entries:
   cms:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T14:34:28.365742432+05:30"
+    created: "2022-01-19T14:37:04.563161756+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -50,7 +87,7 @@ entries:
   factory:
   - apiVersion: v2
     appVersion: 4.1.0
-    created: "2022-01-19T14:34:28.366005474+05:30"
+    created: "2022-01-19T14:37:04.563389478+05:30"
     description: A Helm chart for Kubernetes
     digest: 3da901175be73d937fd3264ce787b98278fffbe93ac6d47d9043e2eb450a3d0e
     name: factory
@@ -61,7 +98,7 @@ entries:
   hvs:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T14:34:28.367097423+05:30"
+    created: "2022-01-19T14:37:04.564197379+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -76,7 +113,7 @@ entries:
   ta:
   - apiVersion: v2
     appVersion: v4.1.0
-    created: "2022-01-19T14:34:28.367840927+05:30"
+    created: "2022-01-19T14:37:04.564662357+05:30"
     dependencies:
     - name: factory
       repository: https://raghav19.github.io/helm-charts/
@@ -88,4 +125,4 @@ entries:
     urls:
     - https://raghav19.github.io/helm-charts/ta-0.1.0.tgz
     version: 0.1.0
-generated: "2022-01-19T14:34:28.363328028+05:30"
+generated: "2022-01-19T14:37:04.55657134+05:30"
