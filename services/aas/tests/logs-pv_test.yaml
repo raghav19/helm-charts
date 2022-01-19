@@ -1,0 +1,56 @@
+---
+suite: logs-pv
+templates:
+  - logs-pv.yaml
+release:
+  name: utesting
+  namespace: utestingnamespace
+tests:
+  - it: Default values
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: PersistentVolume
+      - isAPIVersion:
+          of: v1
+      - equal:
+          path: metadata.name
+          value: aas-logs
+  - it: Overridden Name
+    set:
+      nameOverride: aas-overridden-name
+    asserts:
+      - equal:
+          path: metadata.name
+          value: aas-overridden-name-logs
+  - it: PV Spec Values
+    set:
+      nameOverride: aas-overridden-name
+      storage.nfs.path: "/prefix/path"
+      storage.nfs.server: "test.server.com"
+      storage.nfs.accessModes : ReadWriteMany
+    chart:
+      version: 8.9.9.0
+      appVersion: "v7.1.4"
+    asserts:
+      - equal:
+          path: spec.storageClassName
+          # For now we support only NFS. This would change.
+          value: nfs
+      - equal:
+          path: spec.accessModes
+          value: 
+          - ReadWriteMany
+      - equal:
+          path: spec.claimRef.name
+          value: aas-overridden-name-logs
+      - equal:
+          path: metadata.name
+          value: aas-overridden-name-logs
+      - equal:
+          path: spec.claimRef.namespace
+          value: utestingnamespace
+      - equal:
+          path: spec.nfs.path
+          value: /prefix/path/isecl/aas/v7.1.4/logs/

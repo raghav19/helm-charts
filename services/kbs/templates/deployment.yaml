@@ -1,0 +1,51 @@
+{{- include "factory.headers" . }}
+---
+{{- include "factory.deploymentCommonSpec" . }}
+    spec:
+      initContainers:
+        {{- include "factory.initWaitForCmsSha384BearerToken" . | nindent 8 }}
+        {{- include "factory.initCommonSpecLinkServiceVolumes" . | nindent 8 }}
+          securityContext:
+            {{- toYaml .Values.securityContext.kbs | nindent 12 }}
+          volumeMounts:
+            {{- include "factory.volumeMountsBasePv" . | nindent 12 }}
+      containers:
+        - name: {{ include "factory.name" . }}
+          {{- include "factory.imageContainer" . | indent 10 }}
+          securityContext:
+            {{- toYaml .Values.securityContext.kbs | nindent 12 }}
+          ports:
+            - containerPort: {{ .Values.service.kbs.containerPort }}
+          readinessProbe:
+            httpGet:
+              path: /kbs/v1/version
+              port: {{ .Values.service.kbs.containerPort }}
+              scheme: HTTPS            
+            initialDelaySeconds: 1
+            failureThreshold: 30
+            periodSeconds: 5
+          envFrom:
+            - configMapRef:
+                name: {{ include "factory.name" . }} 
+          volumeMounts:
+            {{- include "factory.volumeMountSvcConfig" . | nindent 12 }}
+            {{- include "factory.volumeMountSvcLogs" . | nindent 12 }}
+            {{- include "factory.volumeMountSecrets" . | nindent 12 }}
+            - name: {{ include "factory.name" . }}-kmip
+              mountPath: /etc/kmip
+            - name: {{ include "factory.name" . }}-opt
+              mountPath: /opt/kbs
+              readOnly: true
+      volumes:
+        {{- include "factory.volumeSvcConfig" . | nindent 8 }}
+        {{- include "factory.volumeSvcLogs" . | nindent 8 }}
+        {{- include "factory.volumesBasePV" . | nindent 8 }}
+        {{- include "factory.volumeProjectedSecrets" . | nindent 8 }}
+        {{- include "factory.volumeCredentials" . | nindent 12 }}
+        {{- include "factory.volumeAasBearerToken" . | nindent 12 }}
+        - name: {{ include "factory.name" . }}-kmip
+          secret:
+            secretName: kmip-certs
+        - name: {{ include "factory.name" . }}-opt
+          persistentVolumeClaim:
+            claimName: kbs-opt-pvc

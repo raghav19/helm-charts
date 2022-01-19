@@ -1,0 +1,57 @@
+---
+suite: Config PV
+templates:
+  - config-pv.yaml
+release:
+  name: utesting
+  namespace: utestingnamespace
+tests:
+  - it: Default values
+    chart:
+      version: 8.9.9.0
+      appVersion: "v7.1.4"
+    asserts:
+      - isKind:
+          of: PersistentVolume
+      - isAPIVersion:
+          of: v1
+      - hasDocuments:
+          count: 1
+      - equal:
+          path: metadata.name
+          value: aas-config
+      - equal:
+          path: spec.volumeMode
+          value: Filesystem
+      - equal:
+          path: spec.persistentVolumeReclaimPolicy
+          value: Retain
+      - equal:
+          path: spec.claimRef.namespace
+          value: utestingnamespace
+      - equal:
+          path: spec.claimRef.name
+          value: aas-config
+      - equal:
+          path: spec.storageClassName
+          value: nfs
+      - equal:
+          path: spec.nfs.path
+          value: /mnt/nfs_share/isecl/aas/v7.1.4/config
+  - it: Overridden Values
+    chart:
+      version: 8.9.9.0
+      appVersion: "v7.1.4"
+    set:
+      nameOverride: aas-overridden-name
+      storage.nfs.path: /some/path
+    assets:
+      - equal:
+          path: metadata.name
+          value: aas-overridden-name-config
+      - equal:
+          path: spec.claimRef.name
+          value: aas-overridden-name-config
+      - equal:
+          path: spec.nfs.path
+          value: /some/path/isecl/aas/v7.1.4/config

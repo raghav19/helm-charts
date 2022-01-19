@@ -1,0 +1,27 @@
+---
+# The below section can be used to override additional values defined under each of the dependent charts
+isecl-controller:
+  image:
+    name: <user input> # ISecL Controller Service image name<br> (**REQUIRED**)
+
+ihub:
+  image:
+    name: <user input> # Integration Hub Service image name<br> (**REQUIRED**)
+
+isecl-scheduler:
+  image:
+    name: <user input> # ISecL Scheduler image name<br> (**REQUIRED**)
+
+global:
+  controlPlaneHostname: <user input> # K8s control plane IP/Hostname<br> (**REQUIRED**)
+  controlPlaneLabel: <user input> #K8s control plane label<br> (**REQUIRED**)<br> Example: `node-role.kubernetes.io/master` in case of `kubeadm`/`microk8s.io/cluster` in case of `microk8s`
+  
+  image:
+    registry: <user input> # The image registry where isecl images are pushed<br> (**REQUIRED**)
+    pullPolicy: Always # The pull policy for pulling from container registry<br> (Allowed values: `Always`/`IfNotPresent`)
+
+  storage:
+    nfs:
+      server: <user input> # The NFS Server IP/Hostname<br> (**REQUIRED**)
+      path: /mnt/nfs_share/  # The path for storing persistent data on NFS
+

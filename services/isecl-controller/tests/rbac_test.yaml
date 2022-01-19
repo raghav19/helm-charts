@@ -1,0 +1,46 @@
+---
+suite: test rbac
+templates:
+  - rbac.yaml
+tests:
+  - it: should override name and namespace for document 1
+    set:
+      nameOverride: isecl-controller-hello
+    release:
+      namespace: test
+    documentIndex: 0
+    asserts:
+      - hasDocuments:
+          count: 2
+      - isKind:
+          of: ClusterRole
+      - isAPIVersion:
+          of: rbac.authorization.k8s.io/v1
+      - equal:
+          path: metadata.name
+          value: isecl-controller-hello
+  
+  - it: should override name and namespace for document 2
+    set:
+      nameOverride: isecl-controller-hello
+    release:
+      namespace: test
+    documentIndex: 1
+    asserts:
+      - isKind:
+          of: ClusterRoleBinding
+      - isAPIVersion:
+          of: rbac.authorization.k8s.io/v1
+      - equal:
+          path: metadata.name
+          value: isecl-controller-hello
+      - equal:
+          path: metadata.namespace
+          value: test
+      - equal:
+          path: roleRef.name
+          value: isecl-controller-hello
+      - equal:
+          path: subjects[0].namespace
+          value: test
+      

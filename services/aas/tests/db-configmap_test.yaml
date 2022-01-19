@@ -1,0 +1,26 @@
+---
+suite: DB ConfigMap
+templates:
+  - db-configmap.yaml
+release:
+  name: utesting
+  namespace: utestingnamespace
+tests:
+  - it: Default values
+    asserts:
+      - isKind:
+          of: ConfigMap
+      - isAPIVersion:
+          of: v1
+      - hasDocuments:
+          count: 1
+      - equal:
+          path: metadata.name
+          value: aasdb
+  - it: Overridden Values
+    set:
+      nameOverride: aas-overridden-name
+    assets:
+      - equal:
+          path: metadata.name
+          value: aas-overridden-namedb

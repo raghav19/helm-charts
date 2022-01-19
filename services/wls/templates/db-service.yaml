@@ -1,0 +1,7 @@
+{{- include "factory.headers" . }}
+---
+{{- include "factory.serviceDbCommonSpec" . }}
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.service.wlsdb.containerPort }}
+      targetPort: {{ .Values.service.wlsdb.containerPort }}

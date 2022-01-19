@@ -1,0 +1,47 @@
+---
+suite: Configmap
+templates:
+  - configmap.yaml
+release:
+  name: utesting
+  namespace: utestingnamespace
+tests:
+  - it: Default values
+    asserts:
+      - isKind:
+          of: ConfigMap
+      - isAPIVersion:
+          of: v1
+      - hasDocuments:
+          count: 1
+      - equal:
+          path: metadata.name
+          value: ta
+      - equal:
+          path: data.AAS_API_URL
+          value: https://aas.utestingnamespace.svc.cluster.local:8444/aas/v1
+      - equal:
+          path: data.CMS_BASE_URL
+          value: https://cms.utestingnamespace.svc.cluster.local:8445/cms/v1
+      - equal:
+          path: data.HVS_URL
+          value: https://hvs.utestingnamespace.svc.cluster.local:8443/hvs/v2
+      - equal:
+          path: data.TA_ENABLE_CONSOLE_LOG
+          value: "true"
+  - it:   Overridden Values
+    set:
+      nameOverride: ta-overridden-name
+    asserts:
+      - equal:
+          path: metadata.name
+          value:  ta-overridden-name
+      - equal:
+          path: data.AAS_API_URL
+          value: https://aas.utestingnamespace.svc.cluster.local:8444/aas/v1
+      - equal:
+          path: data.CMS_BASE_URL
+          value: https://cms.utestingnamespace.svc.cluster.local:8445/cms/v1
+      - equal:
+          path: data.HVS_URL
+          value: https://hvs.utestingnamespace.svc.cluster.local:8443/hvs/v2

@@ -1,0 +1,72 @@
+---
+suite: service
+templates:
+  - service.yaml
+tests:
+  - it: Default port values
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: Service
+      - isAPIVersion:
+          of: v1
+      - equal:
+          path: spec.ports[0].nodePort
+          value: 30444
+      - equal:
+          path: spec.ports[0].targetPort
+          value: 8444
+  - it: Local values test
+    set:
+      service.aas.port: 99999
+      service.aas.containerPort: 1231
+    chart:
+      version: 0.1.0
+      appVersion: v4.0.0
+    release:
+      namespace: test
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: Service
+      - isAPIVersion:
+          of: v1
+      - equal:
+          path: spec.ports[0].nodePort
+          value: 99999
+      - equal:
+          path: spec.ports[0].targetPort
+          value: 1231
+      - equal:
+          path: metadata.namespace
+          value: test
+  - it: Name override
+    set:
+      nameOverride: aas-overridden-name
+    chart:
+      version: 0.1.0
+      appVersion: v4.0.0
+    release:
+      namespace: test
+    asserts:
+      - hasDocuments:
+          count: 1
+      - isKind:
+          of: Service
+      - isAPIVersion:
+          of: v1
+      - equal:
+          path: metadata.labels
+          value:
+            helm.sh/chart: aas-0.1.0
+            app.kubernetes.io/version: "v4.0.0"
+            app.kubernetes.io/name: aas-overridden-name
+      - equal:
+          path: metadata.name
+          value: aas-overridden-name
+      - equal:
+          path: spec.selector
+          value: 
+            app.kubernetes.io/name: aas-overridden-name

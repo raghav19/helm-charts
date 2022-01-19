@@ -1,0 +1,17 @@
+{{- include "factory.headers" . }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "factory.name" . }}
+  namespace: {{ .Release.Namespace }}
+data:
+  CMS_BASE_URL: https://{{.Values.dependentServices.cms}}-svc.isecl.svc.cluster.local:{{.Values.service.cms.containerPort }}/cms/v1/
+  ENDPOINT_URL:  https://qvs-svc.isecl.svc.cluster.local:{{ .Values.service.qvs.containerPort }}/qvs/v1/
+  TCS_BASE_URL: https://{{.Values.dependentServices.tcs}}-svc.isecl.svc.cluster.local:{{.Values.service.tcs.containerPort }}/tcs/v4/sgx/
+  AAS_BASE_URL: https://{{.Values.dependentServices.aas}}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.aas.containerPort }}/aas/v1/
+  {{- if .Values.global }}
+  TLS_SAN_LIST: {{ .Values.global.controlPlaneHostname }},{{ include "factory.name" . }}.{{ .Release.Namespace }}.svc.cluster.local
+  {{- else }}
+  TLS_SAN_LIST: {{ .Values.controlPlaneHostname }},{{ include "factory.name" . }}.{{ .Release.Namespace }}.svc.cluster.local
+  {{- end }}

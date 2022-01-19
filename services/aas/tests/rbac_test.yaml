@@ -1,0 +1,85 @@
+---
+suite: rbac
+templates:
+  - rbac.yaml
+tests:
+  - it: Service Account Document Type Checks
+    documentIndex: 0
+    template: rbac.yaml
+    asserts:
+      - isKind:
+          of: ServiceAccount   
+      - isAPIVersion:
+          of: v1
+  - it: Role Document Type Checks
+    documentIndex: 1
+    template: rbac.yaml
+    asserts:
+      - isKind:
+          of: Role   
+      - isAPIVersion:
+          of: rbac.authorization.k8s.io/v1
+  - it: Role Binding Document Type Checks
+    documentIndex: 2
+    template: rbac.yaml
+    asserts:
+      - isKind:
+          of: RoleBinding   
+      - isAPIVersion:
+          of: rbac.authorization.k8s.io/v1
+  - it: Service Account Value Checks
+    documentIndex: 0
+    template: rbac.yaml
+    asserts:
+      - equal:
+          path: metadata.name
+          value: isecl
+  - it: Role Value Checks
+    documentIndex: 1
+    template: rbac.yaml
+    asserts:
+      - equal:
+          path: metadata.name
+          value: isecl
+      # FIXME : We should be using something similar to contains.
+      # But contains & notContains checks only key:value
+      - equal:
+          path: rules[0].apiGroups
+          value: [""]
+      - equal:
+          path: rules[0].resources
+          value: ["pods", "secrets","configmaps"]
+      - equal:
+          path: rules[0].verbs
+          value: ["get", "list", "create","delete"]
+      - equal:
+          path: rules[1].apiGroups
+          value: [""]
+      - equal:
+          path: rules[1].resources
+          value: ["pods/exec"]
+      - equal:
+          path: rules[1].verbs
+          value: ["create"]
+  - it: Role Binding Value Checks
+    documentIndex: 2
+    template: rbac.yaml
+    asserts:
+      - equal:
+          path: metadata.name
+          value: isecl
+      - equal:
+          path: subjects[0].kind
+          value: ServiceAccount
+      - equal:
+          path: subjects[0].name
+          value: isecl
+      - equal:
+          path: roleRef.kind
+          value: Role
+      - equal:
+          path: roleRef.name
+          value: isecl
+      - equal:
+          path: roleRef.apiGroup
+          value: rbac.authorization.k8s.io

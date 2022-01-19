@@ -1,0 +1,52 @@
+{{- include "factory.headers" . }}
+---
+{{- include "factory.daemonSetCommonSpec" . }}
+    spec:
+      affinity:
+        {{- include "factory.affinityAgents" . | nindent 8 }}
+                  values:
+                  - "{{ .Values.config.nodeLabel }}"
+                  - "SUEFI-ENABLED"
+      containers:
+        - name: {{ include "factory.name" . }}
+          {{- include "factory.imageContainer" . | indent 10 }}
+          securityContext:
+            privileged: true
+          envFrom:
+            - configMapRef:
+                name: {{ include "factory.name" . }}
+          readinessProbe:
+            {{- include "factory.probeReadiness" . | nindent 12 }}
+          volumeMounts:
+            {{- include "factory.volumeMountSvcLogs" . | nindent 12 }}
+            - name: {{ include "factory.name" . }}-config
+              mountPath: /etc/workload-agent/
+            - name: {{ include "factory.name" . }}-socket
+              mountPath: /var/run/workload-agent
+            - name: {{ include "factory.name" . }}-credentials
+              mountPath: /etc/secret-volume/
+              readOnly: true
+            - name: {{ .Values.dependentServices.ta }}-config
+              mountPath: /opt/trustagent/configuration
+            - name: tpmrm
+              mountPath: /dev/tpmrm0
+      volumes:
+         {{- include "factory.volumeSvcLogs" . | nindent 8 }}
+        - name: {{ include "factory.name" . }}-config
+          hostPath:
+            path: /etc/workload-agent/
+            type: DirectoryOrCreate
+        - name: {{ include "factory.name" . }}-socket
+          hostPath:
+            path: /var/run/workload-agent
+            type: DirectoryOrCreate
+        - name: {{ include "factory.name" . }}-credentials
+          secret:
+            secretName: wla-secret 
+        - name: tpmrm
+          hostPath:
+            path: /dev/tpmrm0
+        - name: {{ .Values.dependentServices.ta }}-config
+          hostPath:
+            path: /opt/trustagent/configuration
+            type: DirectoryOrCreate

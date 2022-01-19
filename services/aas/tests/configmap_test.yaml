@@ -1,0 +1,44 @@
+---
+suite: ConfigMap
+templates:
+  - configmap.yaml
+release:
+  name: utesting
+  namespace: utestingnamespace
+tests:
+  - it: Default values
+    asserts:
+      - isKind:
+          of: ConfigMap
+      - isAPIVersion:
+          of: v1
+      - hasDocuments:
+          count: 1
+      - equal:
+          path: metadata.name
+          value: aas
+      - equal:
+          path: data.CMS_BASE_URL
+          value: https://cms.utestingnamespace.svc.cluster.local:8445/cms/v1
+      - equal:
+          path: data.AAS_DB_HOSTNAME
+          value: aasdb.utestingnamespace.svc.cluster.local
+      - equal:
+          path: data.AAS_DB_PORT
+          value: "5432"
+      - equal:
+          path: data.AAS_DB_NAME
+          value: aasdb
+  - it: Overridden Values
+    set:
+      nameOverride: aas-overridden-name
+    assets:
+      - equal:
+          path: metadata.name
+          value: aas-overridden-name
+      - equal:
+          path: data.CMS_BASE_URL
+          value: https://cms.utestingnamespace.svc.cluster.local:8445/cms/v1
+      - equal:
+          path: data.AAS_DB_HOSTNAME
+          value: aas-overridden-namedb.utestingnamespace.svs.cluster.local
